@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://docker.for.mac.host.internal:5432/postgres
-    username: postgres
-    password: postgres
+    url: jdbc:postgresql://tak-api-dv.123456789012.us-east-1.rds.amazonaws.com:5432/takapi
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
     driverClassName: org.postgresql.Driver
   jpa:
     generate-ddl: true
