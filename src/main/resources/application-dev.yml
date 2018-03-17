@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://tak-api-dv.123456789012.us-east-1.rds.amazonaws.com:5432/takapi
+    url: jdbc:postgresql://tak-api-dev.c5gvnnjtn249.us-east-1.rds.amazonaws.com/takapi
     username: ${DB_USER}
     password: ${DB_PASSWORD}
     driverClassName: org.postgresql.Driver

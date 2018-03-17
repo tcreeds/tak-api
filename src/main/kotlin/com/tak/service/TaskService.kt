@@ -18,8 +18,8 @@ class TaskService (
         val tagRepository: TagRepository
 
 ){
-    fun updateTasks(resources: List<TaskResource>) {
-        val taskEntities: List<TaskEntity> = TaskEntity.fromResources(resources)
+    fun getTasks() : Array<TaskResource>{
+        return TaskResource.fromEntities(taskRepository.findAll().toList()).toTypedArray()
     }
 
     fun saveTask(task: TaskResource){

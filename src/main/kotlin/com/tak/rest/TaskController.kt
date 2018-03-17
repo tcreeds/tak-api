@@ -15,8 +15,10 @@ class TaskController(
 
 ) {
     @GetMapping(value = "/tasks")
-    fun getTask() : String {
-        return "gotem"
+    fun getTasks() : Array<TaskResource> {
+        val tasks: Array<TaskResource> = taskService.getTasks()
+        print(tasks)
+        return tasks
     }
 
     @PostMapping(value = "/tasks")
