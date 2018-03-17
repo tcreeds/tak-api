@@ -1,16 +1,14 @@
 package com.tak.repository.entity
 
 import com.tak.rest.resources.TaskResource
-import javax.persistence.Id
-import javax.persistence.Entity
-import javax.persistence.OneToMany
-import javax.persistence.Table
+import javax.persistence.*
 
 @Entity
-@Table(name="task")
+@Table(name="tasks")
 data class TaskEntity(
 
         @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         val id: String,
 
         val name: String,

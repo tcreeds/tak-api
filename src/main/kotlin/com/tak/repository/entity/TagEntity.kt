@@ -1,17 +1,14 @@
 package com.tak.repository.entity
 
 import com.tak.rest.resources.TagResource
-import javax.persistence.Id
-import javax.persistence.Entity
-import javax.persistence.JoinColumn
-import javax.persistence.ManyToOne
-import javax.persistence.Table
+import javax.persistence.*
 
 @Entity
-@Table(name="tag")
+@Table(name="tags")
 data class TagEntity(
 
         @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         val id: String,
 
         @ManyToOne
