@@ -8,7 +8,6 @@ import javax.persistence.*
 data class TaskEntity(
 
         @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
         val id: String,
 
         val name: String,

@@ -1,7 +1,7 @@
 package com.tak.rest.resources
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import org.hibernate.validator.constraints.NotBlank
+import javax.validation.constraints.NotBlank
 
 data class UserResource(
         @JsonProperty

@@ -6,6 +6,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface TaskRepository : CrudRepository<TaskEntity, String> {
-    fun findById(id: String): TaskEntity
     fun findByName(name: String): TaskEntity
 }

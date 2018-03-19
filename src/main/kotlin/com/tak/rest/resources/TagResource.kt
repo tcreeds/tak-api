@@ -2,7 +2,7 @@ package com.tak.rest.resources
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.tak.repository.entity.TagEntity
-import org.hibernate.validator.constraints.NotBlank
+import javax.validation.constraints.NotBlank
 
 data class TagResource(
         @JsonProperty
@@ -18,7 +18,7 @@ data class TagResource(
         val value: String = ""
 ){
         companion object Factory {
-                fun fromEntity(entity: TagEntity) : TagResource {
+                private fun fromEntity(entity: TagEntity) : TagResource {
                         return TagResource(entity.id, entity.type, entity.value)
                 }
 

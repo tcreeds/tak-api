@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
-@CrossOrigin(origins = ["http://localhost:8000"])
 @RestController
 @RequestMapping(value = "/tasks")
 class TaskController(

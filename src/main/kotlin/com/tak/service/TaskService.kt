@@ -26,6 +26,6 @@ class TaskService (
         val taskEntity: TaskEntity = TaskEntity.fromResource(task)
         taskRepository.save(taskEntity)
         val tagEntities: List<TagEntity> = TagEntity.fromResources(task.tags, taskEntity)
-        tagRepository.save(tagEntities)
+        tagRepository.saveAll(tagEntities)
     }
 }

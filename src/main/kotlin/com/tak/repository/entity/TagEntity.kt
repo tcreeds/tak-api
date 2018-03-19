@@ -8,7 +8,6 @@ import javax.persistence.*
 data class TagEntity(
 
         @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
         val id: String,
 
         @ManyToOne

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import javax.servlet.http.HttpServletResponse
 import javax.validation.Valid
 
 @RestController
@@ -17,7 +18,15 @@ class UserController(
 ){
 
     @PostMapping(value="/newuser")
-    fun newUser(@Valid @RequestBody resource: UserResource) {
+    fun newUser(@Valid @RequestBody resource: UserResource, res: HttpServletResponse) {
         userService.createUser(resource)
+        res.addHeader(SecurityUtils.HEADER_STRING, SecurityUtils.TOKEN_PREFIX + SecurityUtils.generateToken(resource.username))
+        print(resource.username)
+    }
+
+    @PostMapping(value="/login")
+    fun login(@Valid @RequestBody resource: UserResource, res: HttpServletResponse){
+        if (userService.checkLogin(resource))
+            res.addHeader(SecurityUtils.HEADER_STRING, SecurityUtils.TOKEN_PREFIX + SecurityUtils.generateToken(resource.username))
     }
 }
