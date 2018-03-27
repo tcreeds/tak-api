@@ -5,7 +5,9 @@ spring:
     password: ${DB_PASSWORD}
     driverClassName: org.postgresql.Driver
   jpa:
-    generate-ddl: true
+    generate-ddl: false
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+  liquibase:
+    change-log: classpath:/liquibase-changelog.xml
 
-liquibase.change-log: classpath:/liquibase-changelog.xml
+spring.jpa.properties.hibernate.temp.use_jdbc_metadata_defaults: false
