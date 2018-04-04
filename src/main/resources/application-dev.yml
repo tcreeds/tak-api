@@ -8,6 +8,7 @@ spring:
     generate-ddl: false
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   liquibase:
+    enabled: true
     change-log: classpath:/liquibase-changelog.xml
 
 spring.jpa.properties.hibernate.temp.use_jdbc_metadata_defaults: false
