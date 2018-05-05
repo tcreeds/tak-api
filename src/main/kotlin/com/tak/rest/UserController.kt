@@ -25,5 +25,7 @@ class UserController(
     fun login(@Valid @RequestBody resource: UserResource, res: HttpServletResponse){
         if (userService.checkLogin(resource))
             res.addHeader(SecurityUtils.HEADER_STRING, SecurityUtils.TOKEN_PREFIX + SecurityUtils.generateToken(resource.username))
+        else
+            res.sendError(401)
     }
 }

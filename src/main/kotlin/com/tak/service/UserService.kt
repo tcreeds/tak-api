@@ -21,8 +21,8 @@ class UserService(
     }
 
     fun checkLogin(resource: UserResource): Boolean{
-        val userEntity: UserEntity = userRepository.findByUsername(resource.username)
-        if (bCryptPasswordEncoder.matches(resource.password, userEntity?.password))
+        val userEntity: UserEntity? = userRepository.findByUsername(resource.username)
+        if (userEntity != null && bCryptPasswordEncoder.matches(resource.password, userEntity?.password))
             return true
         return false
     }

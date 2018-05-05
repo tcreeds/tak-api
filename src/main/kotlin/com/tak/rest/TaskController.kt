@@ -17,13 +17,11 @@ class TaskController(
     @GetMapping
     fun getTasks() : Array<TaskResource> {
         val tasks: Array<TaskResource> = taskService.getTasks()
-        print(tasks)
         return tasks
     }
 
     @PostMapping
     fun updateTasks(@Valid @RequestBody resources: Array<TaskResource>) {
-        print(resources)
         for (task in resources) taskService.saveTask(task)
     }
 }
