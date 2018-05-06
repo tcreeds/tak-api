@@ -15,11 +15,11 @@ data class TaskResource(
 
         @JsonProperty
         @get:NotBlank
-        val tags: List<TagResource> = listOf()
+        val tags: List<TagResource>? = listOf()
 ){
         companion object {
                 fun fromEntity(entity: TaskEntity): TaskResource {
-                        return TaskResource(entity.id, entity.name, TagResource.fromEntities(entity.tags))
+                        return TaskResource(entity.id, entity.name, TagResource.fromEntities(entity.tags ?: listOf()))
                 }
 
                 fun fromEntities(entities: List<TaskEntity>) : List<TaskResource> {

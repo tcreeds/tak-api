@@ -5,13 +5,11 @@ import javax.validation.constraints.NotBlank
 
 data class UserResource(
         @JsonProperty
-        val id: Long? = null,
+        val id: String? = null,
 
         @JsonProperty
-        @get:NotBlank
         val username: String = "",
 
         @JsonProperty
-        @get:NotBlank
         val password: String = ""
 )

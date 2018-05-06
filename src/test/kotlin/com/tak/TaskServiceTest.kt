@@ -1,7 +1,6 @@
 
 package com.tak
 
-import com.tak.repository.TagRepository
 import com.tak.repository.TaskRepository
 import com.tak.rest.resources.TagResource
 import com.tak.rest.resources.TaskResource
@@ -16,8 +15,6 @@ import org.springframework.boot.test.mock.mockito.MockBean
 
 class TaskServiceTest{
 
-    @MockBean
-    lateinit var tagRepository: TagRepository
     @MockBean
     lateinit var taskRepository: TaskRepository
 

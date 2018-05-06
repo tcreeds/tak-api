@@ -1,33 +1,31 @@
 package com.tak.repository.entity
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument
 import com.tak.rest.resources.TagResource
-import javax.persistence.*
 
-@Entity
-@Table(name="tags")
+@DynamoDBDocument
 data class TagEntity(
 
-        @Id
-        val id: String,
+        @DynamoDBAttribute
+        var id: String = "",
 
-        @ManyToOne
-        @JoinColumn(name="postId", nullable=false)
-        val task: TaskEntity,
+        @DynamoDBAttribute
+        var type: String = "",
 
-        val type: String,
-
-        val value: String
+        @DynamoDBAttribute
+        var value: String = ""
 
 ){
 
         companion object Factory {
-            fun fromResource(resource: TagResource, task: TaskEntity) : TagEntity{
-                return TagEntity(resource.id, task, resource.type, resource.value)
+            fun fromResource(resource: TagResource) : TagEntity{
+                return TagEntity(resource.id, resource.type, resource.value)
             }
 
-            fun fromResources(resources: List<TagResource>, task: TaskEntity) : List<TagEntity> {
+            fun fromResources(resources: List<TagResource>) : List<TagEntity> {
                 return resources.map{
-                    fromResource(it, task)
+                    fromResource(it)
                 }
             }
         }

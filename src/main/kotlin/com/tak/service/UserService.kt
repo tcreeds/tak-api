@@ -6,6 +6,7 @@ import com.tak.rest.resources.UserResource
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class UserService(
@@ -17,11 +18,12 @@ class UserService(
 ){
     fun createUser(resource: UserResource) {
         print(resource.id.toString() + " " + resource.username + " " + resource.password)
-        userRepository.save(UserEntity(null, resource.username, bCryptPasswordEncoder.encode(resource.password)))
+        userRepository.save(UserEntity(UUID.randomUUID().toString(), resource.username, bCryptPasswordEncoder.encode(resource.password)))
     }
 
     fun checkLogin(resource: UserResource): Boolean{
-        val userEntity: UserEntity? = userRepository.findByUsername(resource.username)
+        val name: String = resource.username
+        val userEntity: UserEntity? = userRepository.findByUsername(name)
         if (userEntity != null && bCryptPasswordEncoder.matches(resource.password, userEntity?.password))
             return true
         return false

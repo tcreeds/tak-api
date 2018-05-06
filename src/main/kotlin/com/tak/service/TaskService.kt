@@ -1,8 +1,6 @@
 package com.tak.service
 
-import com.tak.repository.TagRepository
 import com.tak.repository.TaskRepository
-import com.tak.repository.entity.TagEntity
 import com.tak.repository.entity.TaskEntity
 import com.tak.rest.resources.TaskResource
 import org.springframework.beans.factory.annotation.Autowired
@@ -12,10 +10,7 @@ import org.springframework.stereotype.Service
 class TaskService (
 
         @Autowired
-        val taskRepository: TaskRepository,
-
-        @Autowired
-        val tagRepository: TagRepository
+        val taskRepository: TaskRepository
 
 ){
     fun getTasks() : Array<TaskResource>{
@@ -25,7 +20,5 @@ class TaskService (
     fun saveTask(task: TaskResource){
         val taskEntity: TaskEntity = TaskEntity.fromResource(task)
         taskRepository.save(taskEntity)
-        val tagEntities: List<TagEntity> = TagEntity.fromResources(task.tags, taskEntity)
-        tagRepository.saveAll(tagEntities)
     }
 }

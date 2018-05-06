@@ -7,15 +7,15 @@ import javax.validation.constraints.NotBlank
 data class TagResource(
         @JsonProperty
         @get:NotBlank
-        val id: String ="",
+        val id: kotlin.String ="",
 
         @JsonProperty
         @get:NotBlank
-        val type: String = "",
+        val type: kotlin.String = "",
 
         @JsonProperty
         @get:NotBlank
-        val value: String = ""
+        val value: kotlin.String = ""
 ){
         companion object Factory {
                 private fun fromEntity(entity: TagEntity) : TagResource {
