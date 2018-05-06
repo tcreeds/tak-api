@@ -16,9 +16,11 @@ class UserController(
 
     @PostMapping(value="/newuser")
     fun newUser(@Valid @RequestBody resource: UserResource, res: HttpServletResponse) {
-        userService.createUser(resource)
-        res.addHeader(SecurityUtils.HEADER_STRING, SecurityUtils.TOKEN_PREFIX + SecurityUtils.generateToken(resource.username))
-        print(resource.username)
+        val success = userService.createUser(resource)
+        if (success)
+            res.addHeader(SecurityUtils.HEADER_STRING, SecurityUtils.TOKEN_PREFIX + SecurityUtils.generateToken(resource.username))
+        else
+            res.sendError(409)
     }
 
     @PostMapping(value="/login")
