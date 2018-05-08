@@ -1,7 +1,7 @@
 package com.tak.service
 
-import com.tak.repository.UserRepository
-import com.tak.repository.entity.UserEntity
+import com.tak.repository.UserDataRepository
+import com.tak.repository.entity.UserDataEntity
 import com.tak.rest.resources.UserResource
 import org.apache.http.HttpStatus
 import org.springframework.beans.factory.annotation.Autowired
@@ -13,14 +13,14 @@ import java.util.*
 class UserService(
 
         @Autowired
-        val userRepository: UserRepository,
+        val repository: UserDataRepository,
 
         val bCryptPasswordEncoder: BCryptPasswordEncoder = BCryptPasswordEncoder()
 ){
     fun createUser(resource: UserResource) : Boolean {
         print(resource.id.toString() + " " + resource.username + " " + resource.password)
-        if (userRepository.findByUsername(resource.username) == null) {
-            userRepository.save(UserEntity(UUID.randomUUID().toString(), resource.username, bCryptPasswordEncoder.encode(resource.password)))
+        if (repository.findByUsername(resource.username) == null) {
+            repository.save(UserDataEntity(resource.username, bCryptPasswordEncoder.encode(resource.password)))
             return true
         }
         return false
@@ -28,8 +28,8 @@ class UserService(
 
     fun checkLogin(resource: UserResource): Boolean {
         val name: String = resource.username
-        val userEntity: UserEntity? = userRepository.findByUsername(name)
-        if (userEntity != null && bCryptPasswordEncoder.matches(resource.password, userEntity?.password))
+        val userDataEntity: UserDataEntity? = repository.findByUsername(name)
+        if (userDataEntity != null && bCryptPasswordEncoder.matches(resource.password, userDataEntity.password))
             return true
         return false
     }

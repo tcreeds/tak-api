@@ -1,7 +1,7 @@
 
 package com.tak
 
-import com.tak.repository.TaskRepository
+import com.tak.repository.UserDataRepository
 import com.tak.rest.resources.TagResource
 import com.tak.rest.resources.TaskResource
 import com.tak.service.TaskService
@@ -16,7 +16,7 @@ import org.springframework.boot.test.mock.mockito.MockBean
 class TaskServiceTest{
 
     @MockBean
-    lateinit var taskRepository: TaskRepository
+    lateinit var repository: UserDataRepository
 
     //lateinit var taskService: TaskService
 

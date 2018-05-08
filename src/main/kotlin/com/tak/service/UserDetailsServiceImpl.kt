@@ -1,6 +1,6 @@
 package com.tak.service
 
-import com.tak.repository.UserRepository
+import com.tak.repository.UserDataRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.userdetails.User
 import java.util.Collections.emptyList
@@ -13,12 +13,12 @@ import org.springframework.stereotype.Service
 @Service
 class UserDetailsServiceImpl(
         @Autowired
-        private val userRepository: UserRepository
+        private val repository: UserDataRepository
 ) : UserDetailsService {
 
     @Throws(UsernameNotFoundException::class)
     override fun loadUserByUsername(username: String): UserDetails {
-        val user = userRepository.findByUsername(username)
+        val user = repository.findByUsername(username)
         return User(user?.username, user?.password, emptyList())
     }
 }

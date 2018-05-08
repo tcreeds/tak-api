@@ -1,7 +1,8 @@
 package com.tak.service
 
-import com.tak.repository.TaskRepository
+import com.tak.repository.UserDataRepository
 import com.tak.repository.entity.TaskEntity
+import com.tak.repository.entity.UserDataEntity
 import com.tak.rest.resources.TaskResource
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -10,15 +11,22 @@ import org.springframework.stereotype.Service
 class TaskService (
 
         @Autowired
-        val taskRepository: TaskRepository
+        val repository: UserDataRepository
 
 ){
-    fun getTasks() : Array<TaskResource>{
-        return TaskResource.fromEntities(taskRepository.findAll().toList()).toTypedArray()
+    fun getTasks(username: String) : Array<TaskResource>{
+        val userData: UserDataEntity? = repository.findByUsername(username)
+        if (userData != null)
+            return TaskResource.fromEntities(userData.tasks.toList()).toTypedArray()
+        return arrayOf()
     }
 
-    fun saveTask(task: TaskResource){
-        val taskEntity: TaskEntity = TaskEntity.fromResource(task)
-        taskRepository.save(taskEntity)
+    fun saveTasks(username: String, resources: List<TaskResource>){
+        val userDataEntity: UserDataEntity? = repository.findByUsername(username)
+        if (userDataEntity != null) {
+            val entities: List<TaskEntity> = TaskEntity.fromResources(resources)
+            userDataEntity.tasks = entities
+            repository.save(userDataEntity)
+        }
     }
 }
