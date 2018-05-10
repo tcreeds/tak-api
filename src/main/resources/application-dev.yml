@@ -1,4 +1,6 @@
-#spring:
+spring:
+  profiles:
+    active: dev
 #  datasource:
 #    url: jdbc:postgresql://tak-api-dev.c5gvnnjtn249.us-east-1.rds.amazonaws.com/takapi
 #    username: ${DB_USER}
