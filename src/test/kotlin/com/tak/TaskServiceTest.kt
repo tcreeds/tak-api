@@ -30,7 +30,7 @@ class TaskServiceTest{
     fun shouldSaveTasks(){
 
             val tag: TagResource = TagResource("testtag", "testing", "testing 123")
-            val task: TaskResource = TaskResource("test", "Test Task", arrayOf(tag).toList())
+            val task: TaskResource = TaskResource("test", "Test Task", "open", arrayOf(tag).toList())
             //taskService.saveTask(task)
 
     }

@@ -16,6 +16,9 @@ data class TaskEntity(
         var name: String = "",
 
         @DynamoDBAttribute
+        var state: String = "",
+
+        @DynamoDBAttribute
         var tags: List<TagEntity>? = listOf()
 
 ){
@@ -23,7 +26,7 @@ data class TaskEntity(
                 fun fromResource(taskResource: TaskResource) : TaskEntity {
 
                         return TaskEntity(taskResource.id,
-                                taskResource.name, TagEntity.fromResources(taskResource.tags ?: listOf()))
+                                taskResource.name, taskResource.state, TagEntity.fromResources(taskResource.tags ?: listOf()))
                 }
 
                 fun fromResources(resources: List<TaskResource>) : List<TaskEntity> {
